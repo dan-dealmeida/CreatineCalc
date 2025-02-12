@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Dosagem de Creatina</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #1f1f1f;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            text-align: center;
+            color: #ff7043; /* Cor laranja */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: #b0bec5;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #333;
+            color: #e0e0e0;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus, select:focus {
+            border-color: #ff7043; /* Laranja */
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff7043; /* Laranja */
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #f4511e; /* Laranja mais forte */
+        }
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+        .result span {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff7043; /* Laranja */
+        }
+        .explanation {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
+
+        /* Ajustes para mobile */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            input[type="number"], select, button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .result {
+                font-size: 20px;
+            }
+            .explanation {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Dosagem de Creatina</h1>
+        <label for="weight">Seu peso (kg):</label>
+        <input type="number" id="weight" placeholder="Digite seu peso" required>
+
+        <label for="age">Sua idade (anos):</label>
+        <input type="number" id="age" placeholder="Digite sua idade" required>
+
+        <label for="activity-level">Nível de atividade:</label>
+        <select id="activity-level">
+            <option value="normal">Normal</option>
+            <option value="active">Ativo</option>
+            <option value="very-active">Muito Ativo</option>
+        </select>
+
+        <button onclick="calculateCreatine()">Calcular Dosagem</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="explanation">
+            <h3>Como o valor é calculado?</h3>
+            <p>A dosagem de creatina é baseada no seu peso corporal. A recomendação básica é de 0,03g de creatina por kg de peso corporal.</p>
+            <p>Além disso, o nível de atividade física pode influenciar a dosagem. Pessoas ativas ou muito ativas podem precisar de uma dosagem maior. Por isso:</p>
+            <ul>
+                <li><strong>Nível normal</strong>: A dosagem é calculada com a recomendação básica (0,03g por kg).</li>
+                <li><strong>Nível ativo</strong>: A dosagem aumenta em 10% para atender às necessidades de pessoas que praticam atividades físicas regularmente.</li>
+                <li><strong>Nível muito ativo</strong>: A dosagem aumenta em 20% para pessoas que se exercitam intensamente.</li>
+            </ul>
+            <p>Após inserir seu peso, idade e nível de atividade, a calculadora determinará a quantidade ideal de creatina para o seu caso.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateCreatine() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let age = parseInt(document.getElementById("age").value);
+            let activityLevel = document.getElementById("activity-level").value;
+
+            if (isNaN(weight) || isNaN(age) || weight <= 0 || age <= 0) {
+                alert("Por favor, insira valores válidos para peso e idade.");
+                return;
+            }
+
+            let creatineDose = weight * 0.03; // Cálculo básico: 0.03g por kg de peso corporal
+
+            // Ajuste da dosagem com base no nível de atividade
+            if (activityLevel === "active") {
+                creatineDose *= 1.1; // Aumenta 10% para pessoas ativas
+            } else if (activityLevel === "very-active") {
+                creatineDose *= 1.2; // Aumenta 20% para pessoas muito ativas
+            }
+
+            let resultText = `Você deve tomar aproximadamente <span>${creatineDose.toFixed(2)}</span> gramas de creatina por dia.`;
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
