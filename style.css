@@ -1,0 +1,100 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #1f1f1f;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+.container:hover {
+    transform: scale(1.02);
+}
+h1 {
+    text-align: center;
+    color: #ff7043; /* Cor laranja */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+    color: #b0bec5;
+}
+input[type="number"], select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #333;
+    color: #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+input[type="number"]:focus, select:focus {
+    border-color: #ff7043; /* Laranja */
+    outline: none;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff7043; /* Laranja */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #f4511e; /* Laranja mais forte */
+}
+.result {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 24px;
+    color: #e0e0e0;
+    font-weight: bold;
+}
+.result span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff7043; /* Laranja */
+}
+.explanation {
+    margin-top: 40px;
+    font-size: 16px;
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+/* Ajustes para mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    input[type="number"], select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .result {
+        font-size: 20px;
+    }
+    .explanation {
+        font-size: 14px;
+    }
+}
